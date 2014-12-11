@@ -4,15 +4,13 @@ filetype plugin indent on
 " Show line numbers
 set number
 
-" Not sure what this does
-set formatoptions+=r
-
-" Tabbing
+" Tabbing and indentation
 set autoindent
 set expandtab
+set formatoptions+=r
 set shiftwidth=4
-set tabstop=4
 set smarttab
+set tabstop=4
 
 " Highlight trailing whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -31,3 +29,7 @@ au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 
 " Treat arduino source files a C source files
 au BufNewFile,BufRead *.ino set filetype=c
+
+" Highlight trailing whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
