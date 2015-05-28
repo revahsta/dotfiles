@@ -97,5 +97,4 @@ check_and_copy vimrc
 check_and_copy zshrc
 check_and_copy gitconfig
 check_and_copy red ~/.oh-my-zsh/custom/themes/ "0" .zsh-theme
-check_and_copy vimrc ~/.some_test_directory
 echo "Finished."
