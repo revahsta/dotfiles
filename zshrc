@@ -54,3 +54,5 @@ export TERM=xterm-256color
 # Key bindings for history search
 bindkey '^[OA' history-beginning-search-backward
 bindkey '^[OB' history-beginning-search-forward
+
+alias quit='exit'
