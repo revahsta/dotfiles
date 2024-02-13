@@ -93,7 +93,7 @@ check_and_copy () {
 }
 
 echo "Copying dotfiles..."
-check_and_copy vimrc
+check_and_copy init.vim ~/.config/nvim/ "0"
 check_and_copy zshrc
 check_and_copy gitconfig
 check_and_copy red ~/.oh-my-zsh/custom/themes/ "0" .zsh-theme
