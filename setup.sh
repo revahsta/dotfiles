@@ -21,14 +21,14 @@ check_and_copy () {
     response2=""
 
     # Check if a filename was given
-    if [ -z $1 ]
+    if [ -z "$1" ]
     then
         echo "Error: No filename specified"
         return
     fi
 
     # Check if a path is given, if not, use the home directory
-    if [ ! -z $2 ]
+    if [ -n "$2" ]
     then
         dotfile_path=$2
     else
@@ -36,11 +36,11 @@ check_and_copy () {
     fi
 
     # Check if a prefix is given, if not, use '.'
-    if [ ! -z $3 ]
+    if [ -n "$3" ]
     then
         # Don't use a prefix if '0' is the given prefix. Sorry if you
         # need a prefix of '0' :(
-        if [ $3 = 0 ]
+        if [ "$3" = 0 ]
         then
             prefix=""
         else
@@ -51,7 +51,7 @@ check_and_copy () {
     fi
 
     # Check if a suffix is given
-    if [ ! -z $4 ]
+    if [ -n "$4" ]
     then
         suffix=$4
     else
@@ -62,31 +62,31 @@ check_and_copy () {
     filename=$prefix$1$suffix
 
     # Check if the path already exists
-    if [ ! -e $dotfile_path ]
+    if [ ! -e "$dotfile_path" ]
     then
         echo -n "Path $dotfile_path doesn't exist. Create?(y/N):"
-        read response1
+        read -r response1
         if [ "$response1" = "y" ]
         then
             echo "Okay, creating path..."
-            mkdir -p $dotfile_path
+            mkdir -p "$dotfile_path"
         else
             echo "Not creating path..."
         fi
     fi
 
     # Check if the final file already exists
-    if [ -e $dotfile_path$filename ]
+    if [ -e "$dotfile_path$filename" ]
     then
         echo -n "Pre-existing $filename detected, overwrite?(y/N):"
-        read response2
+        read -r response2
     fi
 
     # Make a link if the file doesn't exist or if we got permission. The path must also exist
-    if ( [ "$response2" = "y" ] || [ ! -e $dotfile_path$filename ] ) && [ -e $dotfile_path ]
+    if { [ "$response2" = "y" ] || [ ! -e "$dotfile_path$filename" ]; } && [ -e "$dotfile_path" ]
     then
         echo "Copying $filename..."
-        ln -f ./$1 $dotfile_path$filename
+        ln -f "./$1" "$dotfile_path$filename"
     else
         echo "Skipping $filename..."
     fi
