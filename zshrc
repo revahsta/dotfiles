@@ -37,15 +37,19 @@ ZSH_THEME="red-pop"
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
+# fzf stuff
+export FZF_BASE=${HOME}/.fzf
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(colored-man-pages git wd fzf)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+export PATH=$PATH:~/.local/bin
 
 # Something?
 export TERM=xterm-256color
@@ -56,3 +60,5 @@ bindkey '^[OA' history-beginning-search-backward
 bindkey '^[OB' history-beginning-search-forward
 
 alias quit='exit'
+
+bindkey ${FZF_WD_BINDKEY:-'^B'} wd_browse_widget

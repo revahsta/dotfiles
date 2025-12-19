@@ -39,7 +39,11 @@ call plug#begin()
 
 Plug 'ggandor/leap.nvim'
 Plug 'rust-lang/rust.vim'
-Plug 'vim-syntastic/syntastic'
+Plug 'dense-analysis/ale'
+Plug 'preservim/tagbar'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nathangrigg/vim-beancount'
+"Plug 'neovim/nvim-lspconfig'
 
 call plug#end()
 " End plugin stuff
@@ -47,13 +51,12 @@ call plug#end()
 " Set up leap
 lua require('leap').add_default_mappings()
 
-" Configure Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" Rust_Analyzer LSP config
+"lua require'lspconfig'.rust_analyzer.setup{}
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" Related to Rust plugin
+syntax enable
+
+" Tagbar
+nmap <F8> :TagbarToggle<CR>
 
